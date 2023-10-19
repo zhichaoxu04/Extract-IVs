@@ -1,10 +1,10 @@
 # Extract-IVs: Extract IVs for the summary-data-based Mendelian Randomization (MR)
 
-## Summary-data-based Mendelian Randomization ([SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview))
-[SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview) (Summary-data-based Mendelian Randomization) is a powerful method that allows the utilization of publicly available data for conducting Mendelian Randomization (MR) analysis. Instead of relying on individual-level data, SMR makes use of summary-level data from Genome-Wide Association Studies (GWAS) to identify potential causal relationships between a genetic trait (e.g., a genetic variant) and an outcome or phenotype.
-
 - ([eQTLs](https://en.wikipedia.org/wiki/Expression_quantitative_trait_loci)) are genomic loci that are associated with variation in gene expression levels across individuals. They provide insight into the genetic regulation of gene expression and are instrumental in interpreting GWAS findings, especially when the associated variants lie in non-coding regions.
 - (mQTLs) are genomic loci that influence DNA methylation levels. DNA methylation is an epigenetic modification that can regulate gene expression.
+
+## Summary-data-based Mendelian Randomization ([SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview))
+[SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview) (Summary-data-based Mendelian Randomization) is a powerful method that allows the utilization of publicly available data for conducting Mendelian Randomization (MR) analysis. Instead of relying on individual-level data, SMR makes use of summary-level data from Genome-Wide Association Studies (GWAS) to identify potential causal relationships between a genetic trait (e.g., a genetic variant) and an outcome or phenotype.
 
 ## Query Expression Quantitative Trait Loci (eQTL) Summary Results
 ```bash
@@ -20,6 +20,9 @@ smr --beqtl-summary Whole_Blood.lite --query 5.0e-8 --genes genelist.txt --out m
 
 ## Two sample Mendelian randomisation ([2SMR](https://mrcieu.github.io/TwoSampleMR/index.html))
 [2SMR](https://mrcieu.github.io/TwoSampleMR/articles/introduction.html) is an approach that determines the causal relationship between an exposure and an outcome by leveraging summary data from genome-wide association studies (GWAS).
+
+## Extract IVs from existing catalogues
+
 ## Data Resource
 - SMR
   - eQTL: [Lite version of V8 release of the GTEx eQTL/sQTL summary data](https://www.science.org/doi/10.1126/science.aaz1776?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed): This is a set of cis-eQTL summary data across 49 human tissues from the GTEx project. Only SNPs within 1Mb of the transcription start site are available. The forth column of the *.epi file is the middle position of the probe sequence rather than the transcription start site. Only SNPs with $p < 1e^{-5}$ are included. **[[Download](https://yanglab.westlake.edu.cn/data/SMR/GTEx_V8_cis_eqtl_summary_lite.tar)]**
