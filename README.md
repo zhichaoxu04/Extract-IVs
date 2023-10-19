@@ -8,6 +8,7 @@ When eQTLs and mQTLs are used as IVs (Instrumental Variables) in Mendelian rando
 - The genetic variant (like a SNP) that is an eQTL or mQTL acts as the instrumental variable.
 - The gene expression level (for eQTL) or methylation level (for mQTL) acts as the exposure.
 - The health outcome or trait of interest is the outcome.
+
 The rationale is that genetic variants are randomly allocated at conception, so using them as instruments can help establish a causal relationship between the exposure (gene expression or methylation level) and the outcome, while minimizing confounding.
 
 ## Summary-data-based Mendelian Randomization ([SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview))
