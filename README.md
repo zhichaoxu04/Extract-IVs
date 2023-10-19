@@ -15,7 +15,7 @@ The rationale is that genetic variants are randomly allocated at conception, so 
 ## Summary-data-based Mendelian Randomization ([SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview))
 [SMR](https://yanglab.westlake.edu.cn/software/smr/#Overview) (Summary-data-based Mendelian Randomization) is a powerful method that allows the utilization of publicly available data for conducting Mendelian Randomization (MR) analysis. Instead of relying on individual-level data, SMR makes use of summary-level data from Genome-Wide Association Studies (GWAS) to identify potential causal relationships between a genetic trait (e.g., a genetic variant) and an outcome or phenotype.
 
-## Query Expression Quantitative Trait Loci (eQTL) Summary Results
+#### Query Expression Quantitative Trait Loci (eQTL) Summary Results
 ```bash
 S:
 cd S:\Your\path\to\SMR
@@ -30,7 +30,61 @@ smr --beqtl-summary Whole_Blood.lite --query 5.0e-8 --genes genelist.txt --out m
 ## Two sample Mendelian randomisation ([2SMR](https://mrcieu.github.io/TwoSampleMR/index.html))
 [2SMR](https://mrcieu.github.io/TwoSampleMR/articles/introduction.html) is an approach that determines the causal relationship between an exposure and an outcome by leveraging summary data from genome-wide association studies (GWAS).
 
-## Extract IVs from existing catalogues
+#### Extract IVs from existing catalogues
+A number of sources of instruments have already been curated and are available for use. They are provided as data objects in the `MRInstruments` R package.
+
+1. Get the eQTLs for selected genes
+```R
+# To install
+library(remotes)
+install_github("MRCIEU/TwoSampleMR")
+remotes::install_github("MRCIEU/MRInstruments")
+library(MRInstruments)
+library(dplyr)
+
+data(gtex_eqtl)
+# SelectedM is the candidate selected genes
+eQTL_2SMR <- SelectedM %>% 
+  left_join(subset(gtex_eqtl, 
+                   gene_name %in% SelectedM$gene), 
+            by = c("gene" = "gene_name"))
+```
+
+2. Get the mQTLs for selected genes
+```R
+data(aries_mqtl)
+mQTL_2SMR <- SelectedM %>% 
+  left_join(subset(aries_mqtl, 
+                   gene %in% SelectedM$gene), 
+            by = c("gene" = "gene"))
+
+```
+
+3. Count the number of unique SNPs for each gene (Take eQTL as an example)
+```R
+eQTL_counts <- eQTL_2SMR %>%
+  group_by(gene) %>%
+  summarise(num_SNPs_eQTL_2SMR = n_distinct(SNP, na.rm = TRUE)) %>%
+  ungroup() %>%
+  right_join(SelectedM, by = c("gene" = "gene")) %>%
+  replace_na(list(num_SNPs_eQTL_2SMR = 0))
+```
+
+4. Join the counts together to find the overlap
+```R
+gene_counts <- left_join(eQTL_counts, mQTL_counts, 
+                         by = c("gene"="gene", "outcome"="outcome", 
+                                "method"="method", 
+                                "transcript_cluster_id"="transcript_cluster_id",
+                                "subsample"="subsample")) %>% 
+  rowwise() %>%
+  mutate(overlap_2SMR = ifelse(
+    num_SNPs_eQTL_2SMR == 0 | num_SNPs_mQTL_2SMR == 0,
+    0,
+    sum(eQTL_2SMR$SNP[eQTL_2SMR$gene == first(gene) & !is.na(eQTL_2SMR$SNP)] %in% 
+          mQTL_2SMR$SNP[mQTL_2SMR$gene == first(gene) & !is.na(mQTL_2SMR$SNP)], 
+        na.rm = TRUE))) 
+```
 
 ## Data Resource
 - SMR
