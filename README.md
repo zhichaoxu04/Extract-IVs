@@ -27,6 +27,10 @@ smr --beqtl-summary Whole_Blood.lite --query 5.0e-8 --genes genelist.txt --out m
 - `--beqtl-summary` reads summary-level data from a eQTL study in binary format. We store eQTL summary data in three separate files .esi (SNP information, in the same format as the PLINK .bim file), .epi (probe information) and .besd (eQTL summary statistics in binary format). See [Data Management](https://yanglab.westlake.edu.cn/software/smr/#DataManagement) for more information.
 - `--out` saves the results from the SMR analysis in .smr file (text format).
 
+> **NOTE:** The SNPs are coded as chr:bp (based on the genome build hg19) rather than with rsIDs. hg19 is a specific version (assembly) of the human genome. It is also known as GRCh37 (Genome Reference Consortium Human Reference 37). Genome assemblies represent the collection of DNA sequences that constitute the genome of a particular organism. Once you get your search results or when viewing details of a specific SNP using [dbSNP](https://www.ncbi.nlm.nih.gov/snp/), ensure that you're referencing the hg19/GRCh37 assembly.
+
+> **NOTE:** The SNPs with mQTL p-values > 1e-10 are not included.
+
 ## Two sample Mendelian randomisation ([2SMR](https://mrcieu.github.io/TwoSampleMR/index.html))
 [2SMR](https://mrcieu.github.io/TwoSampleMR/articles/introduction.html) is an approach that determines the causal relationship between an exposure and an outcome by leveraging summary data from genome-wide association studies (GWAS).
 
