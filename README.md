@@ -20,4 +20,5 @@ smr --beqtl-summary Whole_Blood.lite --query 5.0e-8 --genes genelist.txt --out m
 
 ### Data Resource
 - SMR
-  - eQTL: [Lite version of V8 release of the GTEx eQTL/sQTL summary data](https://www.science.org/doi/10.1126/science.aaz1776?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed): This is a set of cis-eQTL summary data across 49 human tissues from the GTEx project. Only SNPs within 1Mb of the transcription start site are available. The forth column of the *.epi file is the middle position of the probe sequence rather than the transcription start site. Only SNPs with $p < 1e^{-5}$ are included
+  - eQTL: [Lite version of V8 release of the GTEx eQTL/sQTL summary data](https://www.science.org/doi/10.1126/science.aaz1776?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed): This is a set of cis-eQTL summary data across 49 human tissues from the GTEx project. Only SNPs within 1Mb of the transcription start site are available. The forth column of the *.epi file is the middle position of the probe sequence rather than the transcription start site. Only SNPs with $p < 1e^{-5}$ are included. **[[![Static Badge](https://img.shields.io/badge/a)](https://yanglab.westlake.edu.cn/data/SMR/GTEx_V8_cis_eqtl_summary_lite.tar)]**
+  - 
