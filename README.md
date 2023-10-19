@@ -6,7 +6,7 @@
 - (eQTLs)[https://en.wikipedia.org/wiki/Expression_quantitative_trait_loci] are genomic loci that are associated with variation in gene expression levels across individuals. They provide insight into the genetic regulation of gene expression and are instrumental in interpreting GWAS findings, especially when the associated variants lie in non-coding regions.
 - (mQTLs) are genomic loci that influence DNA methylation levels. DNA methylation is an epigenetic modification that can regulate gene expression.
 
-### Query Expression Quantitative Trait Loci (eQTL) Summary Results
+## Query Expression Quantitative Trait Loci (eQTL) Summary Results
 ```bash
 S:
 cd S:\Your\path\to\SMR
@@ -17,3 +17,7 @@ smr --beqtl-summary Whole_Blood.lite --query 5.0e-8 --genes genelist.txt --out m
 - `--genes` extracts a subset of probes which tag the genes in the list.
 - `--beqtl-summary` reads summary-level data from a eQTL study in binary format. We store eQTL summary data in three separate files .esi (SNP information, in the same format as the PLINK .bim file), .epi (probe information) and .besd (eQTL summary statistics in binary format). See [Data Management](https://yanglab.westlake.edu.cn/software/smr/#DataManagement) for more information.
 - `--out` saves the results from the SMR analysis in .smr file (text format).
+
+### Data Resource
+- SMR
+  - eQTL: [Lite version of V8 release of the GTEx eQTL/sQTL summary data](https://www.science.org/doi/10.1126/science.aaz1776?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed): This is a set of cis-eQTL summary data across 49 human tissues from the GTEx project. Only SNPs within 1Mb of the transcription start site are available. The forth column of the *.epi file is the middle position of the probe sequence rather than the transcription start site. Only SNPs with $p < 1e^{-5}$ are included
