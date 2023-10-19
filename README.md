@@ -12,3 +12,7 @@ S:
 cd S:\Your\path\to\SMR
 smr --beqtl-summary Whole_Blood.lite --query 5.0e-8 --genes genelist.txt --out myquery_lite
 ```
+
+- `--query` saves in text format a subset of the eQTL summary dataset based on the specified eQTL p-value threshold. The default value is 5.0e-8.
+- `--genes` extracts a subset of probes which tag the genes in the list.
+- `--beqtl-summary` reads summary-level data from a eQTL study in binary format. We store eQTL summary data in three separate files .esi (SNP information, in the same format as the PLINK .bim file), .epi (probe information) and .besd (eQTL summary statistics in binary format). See [Data Management](https://yanglab.westlake.edu.cn/software/smr/#DataManagement) for more information. 
